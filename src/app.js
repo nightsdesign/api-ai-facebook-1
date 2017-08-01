@@ -310,39 +310,28 @@ class FacebookBot {
 
             console.log("Text", text);
             //send user's text to api.ai service
-            /*let apiaiRequest = this.apiAiService.textRequest(text,
+            let apiaiRequest = this.apiAiService.textRequest(text,
                 {
                     sessionId: this.sessionIds.get(sender),
                     originalRequest: {
                         data: event,
                         source: "facebook"
                     }
-                });*/
+                });
             
             //start
-            this.userInfoRequest(sender).then((userInfo)=> {
-                let apiaiRequest = this.apiAiService.textRequest(text,
-                    {
-                        sessionId: this.sessionIds.get(sender),
-                    originalRequest: {
-                        data: event,
-                        source: "facebook"
+           let apiaiRequest = apiAiService.textRequest(text,
+            {sessionId: sessionIds.get(sender),
+            contexts: [{
+                    name: "generic",
+                    parameters: {
+                        facebook_user_id: sender
                     }
-                    });//end
+                }]
+            });
+            //end
                 
-             //start
-            /*this.userInfoRequest(sender).then((userInfo)=> {
-                let apiaiRequest = this.apiAiService.textRequest(text,
-                    {
-                        sessionId: this.sessionIds.get(sender),
-                        contexts: [{
-                                name: "generic",
-                                parameters: {
-                                    facebook_user_name: userInfo.first_name
-                                }
-                            }]
-                    });//end*/
-        
+            
       
 
             this.doApiAiRequest(apiaiRequest, sender, text);
