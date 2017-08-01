@@ -310,13 +310,31 @@ class FacebookBot {
                         source: "facebook"
                     }
                 });
+            
+            
+            
+        //my  
+      
 
-            this.doApiAiRequest(apiaiRequest, sender);
+            this.doApiAiRequest(apiaiRequest, sender, text);
         }
     }
 
-    doApiAiRequest(apiaiRequest, sender) {
+    doApiAiRequest(apiaiRequest, sender, text) {
         
+          var userName;
+        let apiaiRequest = this.apiAiService.textRequest(text,
+      {
+            sessionId: this.sessionIds.get(sender),
+            contexts: [
+                {
+                    name: "generic",
+                    parameters: {
+                        facebook_user: userName
+                    }
+                }]
+        });
+       
         apiaiRequest.on('response', (response) => {
             if (this.isDefined(response.result) && this.isDefined(response.result.fulfillment)) {
                 let responseText = response.result.fulfillment.speech;
