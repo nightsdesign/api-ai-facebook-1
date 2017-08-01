@@ -350,7 +350,7 @@ class FacebookBot {
         console.log('doApiAiRequest!!');
         
           //start
-            this.userInfoRequest(sender)
+            /*this.userInfoRequest(sender)
             .then((userInfo)=> {
                 let apiaiRequest = apiAiService.textRequest(text,
                     {
@@ -363,10 +363,10 @@ class FacebookBot {
                                 }
                             }
                         ]
-                    });//end
+                    });//end*/
             
         
-       /*var userName;
+       var userName;
         let apiaiRequest = this.apiAiService.textRequest(text,
       {
             sessionId: this.sessionIds.get(sender),
@@ -377,7 +377,7 @@ class FacebookBot {
                         facebook_user: userName
                     }
                 }]
-        });*/
+        });
        
         apiaiRequest.on('response', (response) => {
             if (this.isDefined(response.result) && this.isDefined(response.result.fulfillment)) {
