@@ -349,6 +349,14 @@ class FacebookBot {
     doApiAiRequest(apiaiRequest, sender, text) {
         console.log('doApiAiRequest!!');
         
+        facebookBot.userInfoRequest(sender)
+            .then((userInfo)=> {
+                
+            console.log('console.log : ' + userInfo.first_name);
+            
+                    });//end
+          
+        
           //start
             /*this.userInfoRequest(sender).then((userInfo)=> {
                 let apiaiRequest = apiAiService.textRequest(text,
