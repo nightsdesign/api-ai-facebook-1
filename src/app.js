@@ -298,7 +298,7 @@ class FacebookBot {
                         ]
                     });//end
             */
-            facebookBot.userInfoRequest(sender);
+            //facebookBot.userInfoRequest(sender);
             
             let apiaiRequest = this.apiAiService.eventRequest(eventObject,
                 {
@@ -348,6 +348,24 @@ class FacebookBot {
 
     doApiAiRequest(apiaiRequest, sender, text) {
         console.log('doApiAiRequest!!');
+        
+          //start
+            this.userInfoRequest(sender)
+            .then((userInfo)=> {
+                let apiaiRequest = apiAiService.textRequest(text,
+                    {
+                        sessionId: sessionIds.get(sender),
+                        contexts: [
+                            {
+                                name: "generic",
+                                parameters: {
+                                    facebook_user_name: userInfo.first_name
+                                }
+                            }
+                        ]
+                    });//end
+            
+        
        /*var userName;
         let apiaiRequest = this.apiAiService.textRequest(text,
       {
