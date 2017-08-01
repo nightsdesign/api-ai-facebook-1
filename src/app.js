@@ -283,8 +283,8 @@ class FacebookBot {
             }
             
             //start
-            facebookBot.userInfoRequest(sender)
-            .then((userInfo)=> {
+            //facebookBot.userInfoRequest(sender)
+            //.then((userInfo)=> {
                 let apiaiRequest = apiAiService.textRequest(text,
                     {
                         sessionId: sessionIds.get(sender),
@@ -297,6 +297,7 @@ class FacebookBot {
                             }
                         ]
                     });//end
+            
 
             let apiaiRequest = this.apiAiService.eventRequest(eventObject,
                 {
