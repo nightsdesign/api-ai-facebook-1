@@ -23,12 +23,12 @@ class FacebookBot {
         this.apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
         this.sessionIds = new Map();
         this.messagesDelay = 200;
-        console.log('constructor');
+        console.log('constructor!!');
     }
 
 
     doDataResponse(sender, facebookResponseData) {
-        console.log(' doDataResponse');
+        console.log(' doDataResponse!!');
         if (!Array.isArray(facebookResponseData)) {
             console.log('Response as formatted message');
             this.sendFBMessage(sender, facebookResponseData)
@@ -58,7 +58,7 @@ class FacebookBot {
     }
 
     doRichContentResponse(sender, messages) {
-        console.log('doRichContentResponse');
+        console.log('doRichContentResponse!!');
         let facebookMessages = []; // array with result messages
 
         for (let messageIndex = 0; messageIndex < messages.length; messageIndex++) {
@@ -220,7 +220,7 @@ class FacebookBot {
     }
 
     doTextResponse(sender, responseText) {
-        console.log('Response as text message');
+        console.log('Response as text message!!');
         // facebook API limit for text length is 640,
         // so we must split message if needed
         let splittedText = this.splitResponse(responseText);
@@ -234,6 +234,7 @@ class FacebookBot {
 
     //which webhook event
     getEventText(event) {
+        console.log('getEventText!!');
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
                 return event.message.quick_reply.payload;
@@ -253,6 +254,7 @@ class FacebookBot {
     }
 
     getFacebookEvent(event) {
+        console.log('getFacebookEvent!!');
         if (event.postback && event.postback.payload) {
 
             let payload = event.postback.payload;
@@ -270,6 +272,7 @@ class FacebookBot {
     }
 
     processFacebookEvent(event) {
+        console.log('processFacebookEvent!!');
         const sender = event.sender.id.toString();
         const eventObject = this.getFacebookEvent(event);
 
@@ -293,6 +296,7 @@ class FacebookBot {
     }
 
     processMessageEvent(event) {
+        console.log('processMessageEvent!!');
         const sender = event.sender.id.toString();
         const text = this.getEventText(event);
 
@@ -324,7 +328,7 @@ class FacebookBot {
     }
 
     doApiAiRequest(apiaiRequest, sender, text) {
-        
+        console.log('doApiAiRequest!!');
        /*var userName;
         let apiaiRequest = this.apiAiService.textRequest(text,
       {
@@ -362,6 +366,7 @@ class FacebookBot {
     }
 
     splitResponse(str) {
+        console.log('splitResponse!!');
         if (str.length <= FB_TEXT_LIMIT) {
             return [str];
         }
@@ -398,6 +403,7 @@ class FacebookBot {
     }
 
     sendFBMessage(sender, messageData) {
+        console.log('sendFBMessage!!');
         return new Promise((resolve, reject) => {
             request({
                 url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -422,6 +428,7 @@ class FacebookBot {
     }
 
     sendFBSenderAction(sender, action) {
+        console.log('sendFBSenderAction!!');
         return new Promise((resolve, reject) => {
             request({
                 url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -446,6 +453,7 @@ class FacebookBot {
     }
 
     doSubscribeRequest() {
+        console.log('doSubscribeRequest!!');
         request({
                 method: 'POST',
                 uri: `https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=${FB_PAGE_ACCESS_TOKEN}`
@@ -460,6 +468,7 @@ class FacebookBot {
     }
 
     configureGetStartedEvent() {
+        console.log('configureGetStartedEvent!!');
         request({
                 method: 'POST',
                 uri: `https://graph.facebook.com/v2.6/me/thread_settings?access_token=${FB_PAGE_ACCESS_TOKEN}`,
@@ -502,13 +511,13 @@ class FacebookBot {
 
 }
 
-
+console.log('new FacebookBot!!');
 let facebookBot = new FacebookBot();
 
 const app = express();
 
 app.use(bodyParser.text({type: 'application/json'}));
-
+console.log('app.get!!');
 app.get('/webhook/', (req, res) => {
     if (req.query['hub.verify_token'] === FB_VERIFY_TOKEN) {
         res.send(req.query['hub.challenge']);
@@ -520,7 +529,7 @@ app.get('/webhook/', (req, res) => {
         res.send('Error, wrong validation token');
     }
 });
-
+console.log('app.post!!');
 app.post('/webhook/', (req, res) => {
     try {
         const data = JSONbig.parse(req.body);
@@ -578,9 +587,9 @@ app.post('/webhook/', (req, res) => {
     }
 
 });
-
+console.log('app.listen!!');
 app.listen(REST_PORT, () => {
     console.log('Rest service ready on port ' + REST_PORT);
 });
-
+console.log('facebookBot.doSubscribeRequest!!');
 facebookBot.doSubscribeRequest();
