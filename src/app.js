@@ -27,6 +27,14 @@ class FacebookBot {
     }
 
     doDataResponse(sender, facebookResponseData) {
+        
+                facebookBot.userInfoRequest(sender)
+            .then((userInfo)=> {
+                
+            console.log('console.log : ' + userInfo.first_name);
+            
+                    });//end
+        
         console.log(' doDataResponse!!');
         if (!Array.isArray(facebookResponseData)) {
             console.log('Response as formatted message');
@@ -349,12 +357,7 @@ class FacebookBot {
     doApiAiRequest(apiaiRequest, sender, text) {
         console.log('doApiAiRequest!!');
         
-        facebookBot.userInfoRequest(sender)
-            .then((userInfo)=> {
-                
-            console.log('console.log : ' + userInfo.first_name);
-            
-                    });//end
+
           
         
           //start
