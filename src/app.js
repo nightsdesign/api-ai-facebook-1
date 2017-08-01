@@ -322,7 +322,7 @@ class FacebookBot {
 
     doApiAiRequest(apiaiRequest, sender, text) {
         
-          var userName;
+       /*var userName;
         let apiaiRequest = this.apiAiService.textRequest(text,
       {
             sessionId: this.sessionIds.get(sender),
@@ -333,7 +333,7 @@ class FacebookBot {
                         facebook_user: userName
                     }
                 }]
-        });
+        });*/
        
         apiaiRequest.on('response', (response) => {
             if (this.isDefined(response.result) && this.isDefined(response.result.fulfillment)) {
