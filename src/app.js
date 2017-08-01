@@ -25,7 +25,71 @@ class FacebookBot {
         this.messagesDelay = 200;
         console.log('constructor!!');
     }
+ //start   
+   processEvent(event) {
+    var sender = event.sender.id.toString();
 
+    if (event.message && event.message.text) {
+        var text = event.message.text;
+        // Handle a text message from this sender
+
+        if (!sessionIds.has(sender)) {
+            sessionIds.set(sender, uuid.v1());
+        }
+
+        console.log("Text", text);
+
+        userInfoRequest(sender)
+            .then((userInfo)=> {
+                let apiaiRequest = apiAiService.textRequest(text,
+                    {
+                        sessionId: sessionIds.get(sender),
+                        contexts: [
+                            {
+                                name: "generic",
+                                parameters: {
+                                    facebook_user_name: userInfo.first_name
+                                }
+                            }
+                        ]
+                    });
+
+                apiaiRequest.on('response', (response) => {
+                    if (isDefined(response.result)) {
+                        let responseText = response.result.fulfillment.speech;
+                        let responseData = response.result.fulfillment.data;
+                        let action = response.result.action;
+
+                        if (isDefined(responseData) && isDefined(responseData.facebook)) {
+                            try {
+                                console.log('Response as formatted message');
+                                sendFBMessage(sender, responseData.facebook);
+                            } catch (err) {
+                                sendFBMessage(sender, {text: err.message});
+                            }
+                        } else if (isDefined(responseText)) {
+                            console.log('Response as text message');
+                            // facebook API limit for text length is 320,
+                            // so we split message if needed
+                            var splittedText = splitResponse(responseText);
+
+                            async.eachSeries(splittedText, (textPart, callback) => {
+                                sendFBMessage(sender, {text: textPart}, callback);
+                            });
+                        }
+
+                    }
+                });
+
+                apiaiRequest.on('error', (error) => console.error(error));
+                apiaiRequest.end();
+
+            }).catch(err=> {
+                console.error(err);
+            });
+    }
+}
+//end
 
     doDataResponse(sender, facebookResponseData) {
         console.log(' doDataResponse!!');
