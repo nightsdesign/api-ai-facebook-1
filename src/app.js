@@ -319,8 +319,8 @@ class FacebookBot {
                     }
                 });
             
-            //start
-           let apiaiRequest = apiAiService.textRequest(text,
+            //start error
+           /*let apiaiRequest = apiAiService.textRequest(text,
             {sessionId: sessionIds.get(sender),
             contexts: [{
                     name: "generic",
@@ -328,7 +328,7 @@ class FacebookBot {
                         facebook_user_id: sender
                     }
                 }]
-            });
+            });*/
             //end
                 
             
@@ -353,7 +353,7 @@ class FacebookBot {
                     }
                 }]
             });*/
-        this.userInfoRequest(sender);
+        //this.userInfoRequest(sender);
         
        
         apiaiRequest.on('response', (response) => {
