@@ -350,35 +350,31 @@ class FacebookBot {
         console.log('doApiAiRequest!!');
         
           //start
-            /*this.userInfoRequest(sender)
-            .then((userInfo)=> {
+            /*this.userInfoRequest(sender).then((userInfo)=> {
                 let apiaiRequest = apiAiService.textRequest(text,
                     {
                         sessionId: sessionIds.get(sender),
-                        contexts: [
-                            {
+                        contexts: [{
                                 name: "generic",
                                 parameters: {
                                     facebook_user_name: userInfo.first_name
                                 }
-                            }
-                        ]
+                            }]
                     });//end*/
             
         
        
-        let apiaiRequest = apiAiService.textRequest(text,
-            {
-            sessionId: sessionIds.get(sender),
-            contexts: [
-                {
+        /*let apiaiRequest = apiAiService.textRequest(text,
+            {sessionId: sessionIds.get(sender),
+            contexts: [{
                     name: "generic",
                     parameters: {
                         facebook_user_id: sender
                     }
-                }
-            ]          
-        });
+                }]
+            });*/
+        this.userInfoRequest(sender);
+        
        
         apiaiRequest.on('response', (response) => {
             if (this.isDefined(response.result) && this.isDefined(response.result.fulfillment)) {
