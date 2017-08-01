@@ -319,9 +319,19 @@ class FacebookBot {
                     }
                 });
             
-            
-             //start
+            //start
             this.userInfoRequest(sender).then((userInfo)=> {
+                let apiaiRequest = this.apiAiService.textRequest(text,
+                    {
+                        sessionId: this.sessionIds.get(sender),
+                        originalRequest: {
+                        data: event,
+                        source: userInfo.first_name
+                    }
+                    });//end
+                
+             //start
+            /*this.userInfoRequest(sender).then((userInfo)=> {
                 let apiaiRequest = this.apiAiService.textRequest(text,
                     {
                         sessionId: this.sessionIds.get(sender),
@@ -331,7 +341,7 @@ class FacebookBot {
                                     facebook_user_name: userInfo.first_name
                                 }
                             }]
-                    });//end
+                    });//end*/
         
       
 
@@ -343,10 +353,7 @@ class FacebookBot {
 
     doApiAiRequest(apiaiRequest, sender, text) {
         console.log('doApiAiRequest!!');
-       
-         
-            
-        
+
        
         /*let apiaiRequest = apiAiService.textRequest(text,
             {sessionId: sessionIds.get(sender),
