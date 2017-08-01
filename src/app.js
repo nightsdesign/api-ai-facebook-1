@@ -317,7 +317,7 @@ class FacebookBot {
 
     doApiAiRequest(apiaiRequest, sender) {
         
-        var userName = "123456ha";
+        var userName;
         let apiaiRequest = apiAiService.textRequest(text,
       {
             sessionId: sessionIds.get(sender),
