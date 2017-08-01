@@ -299,18 +299,7 @@ class FacebookBot {
                     });//end
             */
             facebookBot.userInfoRequest(sender);
-            let apiaiRequest = this.apiAiService.textRequest(text,
-      {
-            sessionId: this.sessionIds.get(sender),
-            contexts: [
-                {
-                    name: "generic",
-                    parameters: {
-                        facebook_user_name: userInfo.first_name
-                    }
-                }]
-        });
-
+            
             let apiaiRequest = this.apiAiService.eventRequest(eventObject,
                 {
                     sessionId: this.sessionIds.get(sender),
