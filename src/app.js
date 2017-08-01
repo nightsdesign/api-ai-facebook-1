@@ -23,10 +23,12 @@ class FacebookBot {
         this.apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
         this.sessionIds = new Map();
         this.messagesDelay = 200;
+        console.log('constructor');
     }
 
 
     doDataResponse(sender, facebookResponseData) {
+        console.log(' doDataResponse');
         if (!Array.isArray(facebookResponseData)) {
             console.log('Response as formatted message');
             this.sendFBMessage(sender, facebookResponseData)
@@ -56,6 +58,7 @@ class FacebookBot {
     }
 
     doRichContentResponse(sender, messages) {
+        console.log('doRichContentResponse');
         let facebookMessages = []; // array with result messages
 
         for (let messageIndex = 0; messageIndex < messages.length; messageIndex++) {
