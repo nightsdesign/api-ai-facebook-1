@@ -347,7 +347,7 @@ class FacebookBot {
             //facebookBot.userInfoRequest(sender);
         
         
-        let apiaiRequest = this.apiAiService.textRequest(text,
+        /*let apiaiRequest = this.apiAiService.textRequest(text,
             {sessionId: this.sessionIds.get(sender),
             contexts: [{
                     name: "generic",
@@ -355,9 +355,15 @@ class FacebookBot {
                         facebook_user_id: sender
                     }
                 }]
-            });
+            });*/
         //this.userInfoRequest(sender);
         
+        var graphUrl = 'https://graph.facebook.com/v2.6/'+message.user+'?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token='+ FACEBOOK_PAGE_TOKEN;
+
+request(graphUrl, function (error, response, body) {
+var obj = JSON.parse(body); 
+console.log('Hello '+ obj.first_name);
+}
        
         apiaiRequest.on('response', (response) => {
             if (this.isDefined(response.result) && this.isDefined(response.result.fulfillment)) {
