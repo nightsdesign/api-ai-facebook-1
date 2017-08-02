@@ -357,13 +357,6 @@ class FacebookBot {
                 }]
             });*/
         //this.userInfoRequest(sender);
-        
-        var graphUrl = 'https://graph.facebook.com/v2.6/'+message.user+'?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token='+ FACEBOOK_PAGE_TOKEN;
-
-request(graphUrl, function (error, response, body) {
-var obj = JSON.parse(body); 
-console.log('Hello '+ obj.first_name);
-}
        
         apiaiRequest.on('response', (response) => {
             if (this.isDefined(response.result) && this.isDefined(response.result.fulfillment)) {
@@ -488,6 +481,9 @@ console.log('Hello '+ obj.first_name);
                     console.log('Subscription result: ', response.body);
                 }
             });
+        
+        const sender = event.sender.id.toString();
+        this.userInfoRequest(sender);
     }
 
         //start
