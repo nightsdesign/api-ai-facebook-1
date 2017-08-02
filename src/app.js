@@ -482,8 +482,8 @@ class FacebookBot {
                 }
             });
         
-        const sender = event.sender.id.toString();
-        //this.userInfoRequest(sender);
+        
+        
     }
 
         //start
