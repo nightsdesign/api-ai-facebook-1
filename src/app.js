@@ -418,6 +418,7 @@ class FacebookBot {
     }
 
     chunkString(s, len) {
+        console.log('chunkString!!');
         let curr = len, prev = 0;
 
         let output = [];
