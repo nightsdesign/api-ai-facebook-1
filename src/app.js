@@ -318,21 +318,6 @@ class FacebookBot {
                         source: "facebook"
                     }
                 });
-            
-            //start error
-           /*let apiaiRequest = apiAiService.textRequest(text,
-            {sessionId: sessionIds.get(sender),
-            contexts: [{
-                    name: "generic",
-                    parameters: {
-                        facebook_user_id: sender
-                    }
-                }]
-            });*/
-            //end
-                
-            
-      
 
             this.doApiAiRequest(apiaiRequest, sender, text);
         }
@@ -362,8 +347,8 @@ class FacebookBot {
             //facebookBot.userInfoRequest(sender);
         
         
-        let apiaiRequest = apiAiService.textRequest(text,
-            {sessionId: sessionIds.get(sender),
+        let apiaiRequest = this.apiAiService.textRequest(text,
+            {sessionId: this.sessionIds.get(sender),
             contexts: [{
                     name: "generic",
                     parameters: {
