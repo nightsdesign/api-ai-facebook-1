@@ -352,7 +352,7 @@ class FacebookBot {
             contexts: [{
                     name: "generic",
                     parameters: {
-                        //facebook_user_id: sender
+                        facebook_user_id: sender
                     }
                 }]
             });
