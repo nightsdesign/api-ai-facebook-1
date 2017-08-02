@@ -30,6 +30,15 @@ class FacebookBot {
     doDataResponse(sender, facebookResponseData) {     
         console.log(' doDataResponse!!');
         if (!Array.isArray(facebookResponseData)) {
+            let apiaiRequest = this.apiAiService.textRequest(text,
+            {sessionId: this.sessionIds.get(sender),
+            contexts: [{
+                    name: "generic",
+                    parameters: {
+                        facebook_user_id: sender
+                    }
+                }]
+            });
             console.log('Response as formatted message');
             this.sendFBMessage(sender, facebookResponseData)
                 .catch(err => console.error(err));
