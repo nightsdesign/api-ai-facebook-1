@@ -31,7 +31,7 @@ class FacebookBot {
         console.log(' doDataResponse!!');
         if (!Array.isArray(facebookResponseData)) {
             
-            let apiaiRequest = this.apiAiService.textRequest(text,
+            /*let apiaiRequest = this.apiAiService.textRequest(text,
             {sessionId: this.sessionIds.get(sender),
             contexts: [{
                     name: "generic",
@@ -39,10 +39,10 @@ class FacebookBot {
                         facebook_user_id: sender
                     }
                 }]
-            });
+            });*/
             
             //start
-            /*FacebookBot.userInfoRequest(sender).then((userInfo)=> {
+            FacebookBot.userInfoRequest(sender).then((userInfo)=> {
                 let apiaiRequest = this.apiAiService.textRequest(text,
                     {
                         sessionId: this.sessionIds.get(sender),
@@ -54,7 +54,7 @@ class FacebookBot {
                                 }
                             }
                         ]
-                    });//end*/
+                    });//end
             
             
             console.log('Response as formatted message');
