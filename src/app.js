@@ -31,7 +31,7 @@ class FacebookBot {
         console.log(' doDataResponse!!');
         if (!Array.isArray(facebookResponseData)) {
             
-            let apiaiRequest = this.apiAiService.textRequest(text,
+            /*let apiaiRequest = this.apiAiService.textRequest(text,
             {sessionId: this.sessionIds.get(sender),
             contexts: [{
                     name: "generic",
@@ -40,7 +40,7 @@ class FacebookBot {
                         'clustername':'abc'
                     }
                 }]
-            });
+            });*/
             
             /*//start
             FacebookBot.userInfoRequest(sender).then((userInfo)=> {
@@ -575,6 +575,17 @@ class FacebookBot {
 
 console.log('new FacebookBot!!');
 let facebookBot = new FacebookBot();
+
+let apiaiRequest = this.apiAiService.textRequest(text,
+            {sessionId: this.sessionIds.get(sender),
+            contexts: [{
+                    name: "generic",
+                    parameters: {
+                        //facebook_user_id: sender
+                        'clustername':'abc'
+                    }
+                }]
+            });
 
 const app = express();
 
