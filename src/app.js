@@ -592,6 +592,7 @@ app.get('/webhook/', (req, res) => {
         res.send('Error, wrong validation token');
     }
 });
+
 console.log('app.post!!');
 app.post('/webhook/', (req, res) => {
     try {
@@ -650,9 +651,11 @@ app.post('/webhook/', (req, res) => {
     }
 
 });
+
 console.log('app.listen!!');
 app.listen(REST_PORT, () => {
     console.log('Rest service ready on port ' + REST_PORT);
 });
+
 console.log('facebookBot.doSubscribeRequest!!');
 facebookBot.doSubscribeRequest();
