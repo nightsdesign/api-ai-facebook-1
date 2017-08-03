@@ -576,16 +576,6 @@ class FacebookBot {
 console.log('new FacebookBot!!');
 let facebookBot = new FacebookBot();
 
-let apiaiRequest = this.apiAiService.textRequest(text,
-            {sessionId: this.sessionIds.get(sender),
-            contexts: [{
-                    name: "generic",
-                    parameters: {
-                        //facebook_user_id: sender
-                        'clustername':'abc'
-                    }
-                }]
-            });
 
 const app = express();
 
