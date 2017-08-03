@@ -44,16 +44,13 @@ class FacebookBot {
             //start
             FacebookBot.userInfoRequest(sender).then((userInfo)=> {
                 let apiaiRequest = this.apiAiService.textRequest(text,
-                    {
-                        sessionId: this.sessionIds.get(sender),
-                        contexts: [
-                            {
+                    {sessionId: this.sessionIds.get(sender),
+                        contexts: [{
                                 name: "generic",
                                 parameters: {
                                     facebook_user_name: userInfo.first_name
                                 }
-                            }
-                        ]
+                            }]
                     });//end
             
             
