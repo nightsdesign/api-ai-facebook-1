@@ -38,8 +38,8 @@ class FacebookBot {
             contexts: [{
                     name: "generic",
                     parameters: {
-                        facebook_user_id: sender
-                        //'clustername':'abc'
+                        //facebook_user_id: sender
+                        'clustername':'abc'
                     }
                 }]
             }); 
