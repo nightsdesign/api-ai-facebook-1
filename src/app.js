@@ -31,7 +31,7 @@ class FacebookBot {
         console.log(' doDataResponse!!');
         if (!Array.isArray(facebookResponseData)) {
             
-            let apiaiRequest = this.apiAiService.textRequest(text,
+            /*let apiaiRequest = this.apiAiService.textRequest(text,
             {sessionId: this.sessionIds.get(sender),
             contexts: [{
                     name: "generic",
@@ -40,7 +40,7 @@ class FacebookBot {
                         'clustername':'abc'
                     }
                 }]
-            });
+            });*/
             
             /*//start
             FacebookBot.userInfoRequest(sender).then((userInfo)=> {
@@ -598,11 +598,19 @@ app.post('/webhook/', (req, res) => {
     
     //var data = req.body;
     //console.log(JSON.stringify(data));
-    
+    let apiaiRequest = this.apiAiService.textRequest(text,
+            {sessionId: this.sessionIds.get(sender),
+            contexts: [{
+                    name: "generic",
+                    parameters: {
+                        //facebook_user_id: sender
+                        'clustername':'abc'
+                    }
+                }]
+            });
     
     try {
         const data = JSONbig.parse(req.body);
-        console.log(data);
         if (data.entry) {
             let entries = data.entry;
             entries.forEach((entry) => {
