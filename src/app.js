@@ -30,7 +30,7 @@ class FacebookBot {
     doDataResponse(sender, facebookResponseData) {     
         console.log(' doDataResponse!!');
         if (!Array.isArray(facebookResponseData)) {
-            
+            userInfoRequest(userId);
             /*let apiaiRequest = this.apiAiService.textRequest(text,
             {sessionId: this.sessionIds.get(sender),
             contexts: [{
@@ -607,9 +607,9 @@ app.get('/webhook/', (req, res) => {
 console.log('app.post!!');
 app.post('/webhook/', (req, res) => {
     
-    var data = req.body;
-    console.log(JSON.stringify(data));
- userInfoRequest(userId);
+    //var data = req.body;
+    //console.log(JSON.stringify(data));
+ //userInfoRequest(userId);
     
     try {
         const data = JSONbig.parse(req.body);
