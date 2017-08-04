@@ -609,7 +609,7 @@ app.post('/webhook/', (req, res) => {
     
     var data = req.body;
     console.log(JSON.stringify(data));
- 
+ userInfoRequest(userId);
     
     try {
         const data = JSONbig.parse(req.body);
