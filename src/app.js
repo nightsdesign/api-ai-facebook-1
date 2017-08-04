@@ -30,17 +30,19 @@ class FacebookBot {
     doDataResponse(sender, facebookResponseData) {     
         console.log(' doDataResponse!!');
         if (!Array.isArray(facebookResponseData)) {
-            userInfoRequest(userId);
-            /*let apiaiRequest = this.apiAiService.textRequest(text,
+            
+            //userInfoRequest(userId);
+            
+            let apiaiRequest = this.apiAiService.textRequest(text,
             {sessionId: this.sessionIds.get(sender),
             contexts: [{
                     name: "generic",
                     parameters: {
-                        //facebook_user_id: sender
-                        'clustername':'abc'
+                        facebook_user_id: sender
+                        //'clustername':'abc'
                     }
                 }]
-            });*/
+            }); 
             
             /*//start
             FacebookBot.userInfoRequest(sender).then((userInfo)=> {
