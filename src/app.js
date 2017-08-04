@@ -596,8 +596,8 @@ app.get('/webhook/', (req, res) => {
 console.log('app.post!!');
 app.post('/webhook/', (req, res) => {
     
-    //var data = req.body;
-    //console.log(JSON.stringify(data));
+    var data = req.body;
+    console.log(JSON.stringify(data));
  
     
     try {
